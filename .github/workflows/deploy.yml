@@ -1,4 +1,4 @@
-name: Gmeek Blog Deploy
+name: MkDocs Blog Auto Deploy
 on:
   push:
     branches: [ main ]
@@ -7,7 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build & Deploy Gmeek
-        uses: Meekdai/GmeekAction@main
+      - name: 安装Python环境
+        uses: actions/setup-python@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          python-version: "3.11"
+      - name: 安装MkDocs静态博客工具
+        run: pip install mkdocs
+      - name: 构建静态网页
+        run: mkdocs build
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
