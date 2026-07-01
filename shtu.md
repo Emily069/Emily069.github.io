@@ -1,3 +1,7 @@
+---
+layout: page
+title: 我的第一篇博客
+---
 # 我的第一篇博客
 ## 一、作业目的
 掌握GitHub仓库、Markdown写作、GitHub Actions自动部署、GitHub Pages静态网站。
